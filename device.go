@@ -139,6 +139,12 @@ func (d Device) ForwardKill(localPort int) (err error) {
 
 func (d Device) RunShellCommand(cmd string, args ...string) (string, error) {
 	raw, err := d.RunShellCommandWithBytes(cmd, args...)
+	if err != nil {
+		fmt.Print("Error:", err)
+	}
+	if len(raw) != 0 {
+		fmt.Print(string(raw))
+	}
 	return string(raw), err
 }
 
