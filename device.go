@@ -148,6 +148,11 @@ func (d Device) RunShellCommand(cmd string, args ...string) (string, error) {
 	return string(raw), err
 }
 
+func (d Device) RunShellCommandWithoutOutput(cmd string, args ...string) (string, error) {
+	raw, err := d.RunShellCommandWithBytes(cmd, args...)
+	return string(raw), err
+}
+
 func (d Device) RunShellCommandWithBytes(cmd string, args ...string) ([]byte, error) {
 	if len(args) > 0 {
 		cmd = fmt.Sprintf("%s %s", cmd, strings.Join(args, " "))
